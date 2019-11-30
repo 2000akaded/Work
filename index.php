@@ -36,7 +36,7 @@
                     <li class = "dropdown">
                         <a href="#" class = "dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"aria-expanded ="false">
                             <i class ="glyphicon glyphicon-user"></i>
-                            ยินดีตอนรับ <?php echo $_SESSION['name'] ?> <span class="caret"></span>
+                            ยินดีตอนรับ 5555555 <?php echo $_SESSION['name'] ?> <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#">โปรไฟล์</a></li>
