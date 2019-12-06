@@ -1,6 +1,25 @@
 <?php
     session_start();
+    if(isset($_GET['category'])){
+        $cat=$_GET['category'];
+    }
+    else{
+        header("location:index.php");
+    }
     include("connex.php");
+    $sql ="SELECT * FROM product WHERE category=$cat ";
+    $result = $conn->query($sql);
+    if(!$result){
+        echo "Error:".$conn->error;
+    }
+    else{
+        if($result->num_rows>0){
+            $prd = $result->fetch_object();
+        }
+        else{
+            $prd=NULL;
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,22 +40,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">aoaad</a>
+                <a class="navbar-brand" href="index.php">aoaad</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Home</a> </li>
+                    <li><a href="index.php">Home</a> </li>
 
                     <!-- -->
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-hapopup="true" aria-expanded="false"> 
+                        <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-hapopup="true" aria-expanded="false"> 
                            ประเภท <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="showproduct.php?category=1">ปลา</a></li>
-                            <li><a href="showproduct.php?category=2">ผัก</a></li>
-                            <li><a href="showproduct.php?category=3">หมู</a></li>
-                            <li><a href="showproduct.php?category=4">ไก่</a></li>
+                            <li><a href="showproduct.php?category=1">ไก่</a></li>
+                            <li><a href="showproduct.php?category=2">หมู</a></li>
+                            <li><a href="showproduct.php?category=3">ปลา</a></li>
+                            <li><a href="showproduct.php?category=3">ผัก</a></li>
                         </ul>
                     </li>
                     <!-- -->
@@ -77,6 +96,8 @@
             </div>
         </div>
     </nav>
+
+    <div class="container text-center">
     <div class="container">
         <div class="jumbotron">
         <h1>oaas Shop</h1>
@@ -87,48 +108,32 @@
             Ad commodi odit corporis. Ipsa quam suscipit molestiae, ducimus labore ipsum consectetur cumque quaerat commodi voluptatem velit beatae dignissimos voluptatum, neque rem asperiores quo delectus quibusdam sunt doloremque officia eos!</p>
         </div>
     </div>
-    <h1>วัตถุดิบแนะนำ</h1><h3></h3>
-    <div class="container">
-        <div class="row">
-        <?php 
-            $sql = "SELECT * FROM product ORDER BY id";
-            $result = $conn->query($sql);
-            if(!$result){
-                echo "Error during retrieval data".$conn->error;
-            }
-            else{
-                //ดึงข้อมูล
+        <div class="container">
+            <div class="row">
+            <?php
+                 $sql ="SELECT * FROM product WHERE  category=$cat ";
+                 $result = $conn->query($sql);
                 while($prd = $result->fetch_object()){
-        ?>
+            ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div class="thumbnail">
-                    <a href="productdetail.php?pid=<?php echo $prd->id; ?>">
-                        <img src="jpg/<?php echo $prd->picture; ?>" alt="" >
-                    </a>
+                        <a href="productdetail.php?pid=<?php echo $prd->id; ?>">
+                            <img src="jpg/<?php echo $prd->picture ?>" alt="">
+                        </a>
                         <div class="caption">
-                        <h3><?php echo $prd->name; ?></h3>
-                            <p><?php echo $prd->description; ?></p>
-                            <p>
-                                <strong>Price: <?php echo $prd->price; ?></strong>
-                            </p>
-                            <p>
-                                <a href="#" class="btn btn-succcess">Add to basket</a>
-                            </p>
+                            <h3><?php echo $prd->name ?></h3>
+                            <p><?php echo $prd->description ?></p>
+                            <h4>Price : <?php echo $prd->price ?> Baht</h4>
                         </div>
-                        
+                            <p><a href="#" class="btn btn-success">Add To Cart.</a></p>
                     </div>
-                    
                 </div>
-            <?php 
-                }
-            }
-            
+                        <?php
+                    }
             ?>
-            
-            
+                
+            </div>
         </div>
     </div>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
