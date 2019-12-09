@@ -55,6 +55,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="#">โปรไฟล์</a></li>
                             <li><a href="#">รายการสั่งซื้อ</a></li>
+                            <li><a href="saveproduct.php">เพิ่มรายการสินค้า</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="sessiondestroy.php">ออกจากระบบ</a></li>
                         </ul>
@@ -113,6 +114,12 @@
                             </p>
                             <p>
                                 <a href="#" class="btn btn-succcess">Add to basket</a>
+                                <a href="editproduct.php?pid=<?php echo $prd->id?>" class="btn btn-warning">
+                                    <i class="glyphicon glyphicon-pencil"></i>Edit
+                                </a>
+                                <a href="deleteditproduct.php?pid=<?php echo $prd->id?>" class="btn btn-danger lnkDelete" id="">
+                                    <i class="glyphicon glyphicon-trash"></i>Dele
+                                </a>
                             </p>
                         </div>
                         
@@ -130,5 +137,19 @@
     </div>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        $().ready(function(){
+            $(".lnkDelete").click(function(){
+            if(confirm("confirm delete?")){
+                return true;
+            }
+            else{
+                return false;
+            }
+           // retun confirm("Confirm delete?")
+            });
+        });
+        
+    </script>
 </body>
 </html>
