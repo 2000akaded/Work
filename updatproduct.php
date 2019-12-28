@@ -6,8 +6,21 @@
     $description = $_POST['txtDescription'];
     $price= $_POST['txtPrice'];
     $unitInStock= $_POST['txtStock'];
+    
+    
+    //update picture
+    $picture=$_POST['hdnProductPic'];
+    if($_FILES["filePic"]["name"]!=""){
+        $picture = $_FILES["filePic"]["name"];
 
-    $sql = "UPDATE product SET name='$name',description='$description',price=$price,unitInStock=$unitInStock WHERE id = $pid";
+        //movefile
+        move_uploaded_file($_FILES["filepic"]["tmp_name"],"jpg/".$_FILES["filepic"]["name"]);
+        
+    }
+    
+    
+
+    $sql = "UPDATE product SET name='$name',description='$description',price=$price,unitInStock=$unitInStock, picture='$picture' WHERE id = $pid";
     
     //echo $sql;
 

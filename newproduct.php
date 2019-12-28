@@ -76,7 +76,7 @@
             <div class="form-group">
                 <label for="name" class="control-label col-md-3">Description : </label>
                 <div class="col-md-9">
-                    <input type="txtDescription" class="form-control">
+                    <input type="txtDescription" name="txtDescription" class="form-control">
                 </div>
             </div>
             <div class="form-group">
@@ -86,15 +86,23 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="name" class="control-label col-md-3">Category : </label>
+                <div class="col-md-9">
+                    <input type="text"name="txtCategory" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="name" class="control-label col-md-3">Stock :</label>
                 <div class="col-md-9">
                     <input type="text"name="txtStock" class="form-control">
                 </div>
             </div>  
-            <div class="form-group">
+            <div class="form-group">451
+            7\
+            
                 <label for="name" class="control-label col-md-3">Product picture : </label>
                 <div class="col-md-9">
-                    <input type="file"name="filePic" class="form-control-file" accept="image/*">
+                    <input type="file"name="filepic" class="form-control-file" accept="image/*">
                 </div>
             </div> 
             <div class="form-group">

@@ -16,18 +16,20 @@
     else{
         $name = $_POST['txtName'];
         $desc = $_POST['txtDescription'];
-        $prices = $_POST['txtPrice'];
+        $price = $_POST['txtPrice'];
         $unitInStock = $_POST['txtStock'];                                                                                           
-        $filename = $_POST['filePic']["name"];
+        $category = $_POST['txtCategory'];
+        $filename = $_FILES['filepic']["name"];
+
         //echo "Type: " . $_FILES["filePic"]["type"] . "<br>";
         //echo "Name: " . $_FILES["filePic"]["name"] . "<br>";
         //echo "Size: " . $_FILES["filePic"]["size"] . "<br>";
         //echo "Temp name: " . $_FILES["filePic"]["tmp_name"] . "<br>";
         //echo "Error: " . $_FILES["filePic"]["error"] . "<br>";
 
-        move_uploaded_file($_FILES["filePic"]["tmp_name"],"jpg/".$_FILES["filePic"]["name"]);
+        move_uploaded_file($_FILES["filepic"]["tmp_name"],"jpg/".$_FILES["filepic"]["name"]);
 
-        $sqlInsert = "INSERT INTO product (name,description,price,unitInStock,picture) VALUES('$name','$desc','$price','$unitInStock','$filename')";
+        $sqlInsert = "INSERT INTO product (name,description,price,unitInStock,picture,category) VALUES('$name','$desc','$price','$unitInStock','$filename','$category')";
         //echo $sqlInsert;
         $result=$conn->query($sqlInsert);
         if($result){

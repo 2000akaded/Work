@@ -19,11 +19,11 @@
             $username = $conn->real_escape_string($_POST['username']);
             $password = md5($conn->real_escape_string($_POST['password']));
 
-            $sql = "SELECT * FROM customer WHERE usename = '$username' AND password = '$password'";
+            $sql = "SELECT * FROM customers WHERE username = '$username' AND password = '$password'";
 
             //mysqli_query
             $result =$conn->query($sql);
-            //print_r($result);
+            print_r($result);
             //
             //  
             if($result->num_rows>0){
